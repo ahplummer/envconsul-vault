@@ -1,0 +1,4 @@
+secret {
+    no_prefix = true
+    path = "secret/homestuff/gmailcreds"
+}

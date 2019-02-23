@@ -1,0 +1,7 @@
+{
+    "path": {
+      "secret/homestuff/gmailcreds*": {
+        "policy": "read"
+      }
+    }
+}
