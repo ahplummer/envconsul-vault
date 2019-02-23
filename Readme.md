@@ -12,7 +12,9 @@ This tuturial will have several outcomes:
 4) The Vault file store will be stored in a directory on the host machine, to prevent data loss of secrets.
 5) You will see secrets that originate with Vault being passed to a child process using `envconsul`.  
 
-TLDR: to execute the containers for this test, `$ docker-compose up -d --build` will build and run them.  You'll then want to ensure that Vault is init'd and unsealed, configured as instructed below.  You can then execute `docker-compose exec envconsul envconsul -upcase -config=/envconsul/config.json testapp.sh`, or simply `env` at the end (instead of testapp.sh).
+# To run from the repos
+1) Get your IP loaded up in `env` file.
+2) The command `$ docker-compose up -d --build` will build and run the containers.  You'll then want to ensure that Vault is init'd and unsealed, configured as instructed below.  You can then execute `docker-compose exec envconsul envconsul -upcase -config=/envconsul/config.json testapp.sh`, or simply `env` at the end (instead of testapp.sh).
 
 # Manual Project Setup for this tutorial
 
@@ -123,9 +125,9 @@ TODO: contents of docker-compose.yml, see repo.
 
 
 ## Init vault (initial setup)
-NOTE: Jump into the container `$ docker-compose exec vault bash`, or simply run the command from the host with the preface `$ docker-compose exec vault <container command>`
+NOTE: Jump into the container `$ docker-compose exec vault bash`, or simply run the command from the host with the preface `$ docker-compose exec vault <container command>`. *You cannot run the 'init' operation from outside the container.*
 
-* Execute `# vault operator init` from inside the container (or from outside, using the preface identified above). Take note of the output and paste it somewhere safe:
+* Execute `# vault operator init` from inside the container. Take note of the output and paste it somewhere safe:
 
 ```
 Unseal Key 1: 8K4VSJeCVqJjHMWZdgnlwP7e+XR5/KvsKQs6zLVIarnx
@@ -181,7 +183,7 @@ policies             ["default" "gmailcreds_acl"]
 * Curl the data:
   
 ``` 
-curl -H "X-Vault-Token: $VAULT_TOKEN" -X GET http://127.0.0.1:8200/v1/secret/data/homestuff/gmailcreds
+curl -H "X-Vault-Token: $VAULT_TOKEN" -X GET http://127.0.0.1:8200/v1/secret/homestuff/gmailcreds
 ```
 
 The output:

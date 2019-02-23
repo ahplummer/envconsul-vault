@@ -27,5 +27,5 @@ services:
     environment:
       - VAULT_ADDR=http://${HOST_IP}:8200
       #not root token, but what with specific ACL's.
-      - VAULT_TOKEN=88503e0c-d3ca-e344-fd24-57fab7a31f49
+      - VAULT_TOKEN=CHANGEME
     command: tail -F
